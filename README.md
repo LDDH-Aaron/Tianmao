@@ -14,3 +14,49 @@
 - 其它数据分析：对爬取的相关数据进行其它分析和图形显示，参考文献，但需有扩展（某商品中、差评预警）；
 - 天猫商品评论可视化系统设计与开发
 - 自主创新内容
+
+# 任务拆分  
+
+## 模块1
+
+([@NingmengLemon](https://github.com/NingmengLemon))
+
+1. 爬取数据
+
+## 模块2
+
+([@YXZ252426](https://github.com/YXZ252426))
+
+1. 基础数据分析
+2. 可视化
+
+## 模块3
+
+([@NingmengLemon](https://github.com/NingmengLemon))
+
+3. 分词
+4. 可视化
+
+## 模块4
+
+([@LDDH-Aaron](https://github.com/LDDH-Aaron))
+
+5. 情感分析
+
+## 模块5
+
+([@LDDH-Aaron](https://github.com/LDDH-Aaron))
+
+6. 其他数据分析
+
+## 模块6
+
+([@YXZ252426](https://github.com/YXZ252426))
+7. 前端设计 
+
+# TODO
+
+- 代码
+- 结题报告 yxz 
+- ppt gcx
+- 汇报答辩 hmy 
