@@ -3,6 +3,7 @@ import json
 import time
 import random
 
+import uiautomator2 as u2
 
 from parse_uixml import parse
 
@@ -24,30 +25,40 @@ def dump(tofile="./ui.xml"):
 def update_no_override(dst: dict, src: dict):
     dst.update({k: v for k, v in src.items() if k not in dst})
 
+
 def main():
+    device = u2.connect()
     result: dict[str, str] = {}
     try:
-        tmpfile = "./ui.xml"
+        # tmpfile = "./ui.xml"
         cycle = 0
         no_increase_count = 0
         while True:
-            dump(tmpfile)
+            # dump(tmpfile)
             size = len(result)
-            with open(tmpfile, "rb") as fp:
-                data = parse(fp.read(), stored=result)
+            # with open(tmpfile, "rb") as fp:
+            #     data = parse(fp.read(), stored=result)
+            data = parse(device.dump_hierarchy().encode("utf-8"), stored=result)
             print(*data.items(), sep="\n")
             update_no_override(result, data)
             cycle += 1
-            run_command(
-                "adb",
-                "shell",
-                "input",
-                "swipe",
-                str(random.randint(480, 600)),
-                str(1500 + random.randint(-10, 10)),
-                str(random.randint(480, 600)),
-                str(1000 + random.randint(-10, 10)),
+            # run_command(
+            #     "adb",
+            #     "shell",
+            #     "input",
+            #     "swipe",
+            #     str(random.randint(480, 600)),
+            #     str(1500 + random.randint(-10, 10)),
+            #     str(random.randint(480, 600)),
+            #     str(1000 + random.randint(-10, 10)),
+            # )
+            device.swipe(
+                random.randint(480, 600),
+                1500 + random.randint(-10, 10),
+                random.randint(480, 600),
+                1000 + random.randint(-10, 10),
             )
+
             print("Cycle:", cycle, " Add:", len(result) - size, " Total:", len(result))
 
             if len(result) == size:
@@ -70,5 +81,5 @@ def main():
     print("saved!")
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

@@ -11,11 +11,17 @@ _regex_desc_templ = re.compile(r"(^|\s+)[\u4e00-\u9fa5]{4}：")
 
 
 def rm_desc_templ(rate_content: str):
-    return _regex_desc_templ.sub(" ", rate_content.removeprefix("商品评价:")).strip()
+    return _regex_desc_templ.sub(
+        " ", rate_content.removeprefix("商品评价:").removeprefix("评价标题:")
+    ).strip()
 
 
 def parse(xmltext: str, stored: dict[str, str] | None) -> dict[str, str]:
-    """返回的字典，键为评价内容，值为日期"""
+    """
+    返回的字典，键为评价内容，值为日期
+    
+    stored 参数是已经记录的内容，用于去重
+    """
     xml = etree.XML(xmltext, etree.XMLParser())
     nodes: list[str] = [
         e.attrib.get("content-desc", "") for e in xml.findall(".//node")
