@@ -1,0 +1,14 @@
+https://market.m.taobao.com/app/tb-source-app/shop-auction/pages/auction?_w&sellerId=2206488662066&shopId=303680236&dynamicCard=true&disablePromotionTips=false&shop_navi=allitems&displayShopHeader=true
+店铺
+
+https://h5.m.taobao.com/awp/core/detail.htm?id=742358439437&spm=a2141.7631671.content.61
+详情页
+
+https://h5.m.taobao.com/app/rate/www/rate-list/index.html?auctionNumId=742358439437
+评价页
+
+<span id="nc_1_n1z" class="nc_iconfont btn_slide" aria-label="滑块" tabindex="0" role="button" style="left: 0px;"></span>
+滑块
+<div id="nc_1__scale_text" class="scale_text slidetounlock"><span class="nc-lang-cnt" data-nc-lang="SLIDE">向右滑动验证</span></div>
+滑块边框
+
