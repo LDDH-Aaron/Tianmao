@@ -34,25 +34,25 @@
 
 ([@NingmengLemon](https://github.com/NingmengLemon))
 
-3. 分词
-4. 可视化
+1. 分词
+2. 可视化
 
 ## 模块4
 
 ([@LDDH-Aaron](https://github.com/LDDH-Aaron))
 
-5. 情感分析
+1. 情感分析
 
 ## 模块5
 
 ([@LDDH-Aaron](https://github.com/LDDH-Aaron))
 
-6. 其他数据分析
+1. AI问答助手的加入
 
 ## 模块6
 
 ([@YXZ252426](https://github.com/YXZ252426))
-7. 前端设计 
+1. 前端设计 
 
 # TODO
 

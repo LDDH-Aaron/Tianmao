@@ -1,0 +1,11 @@
+spark_ai_python
+langchain_community
+langchain-openai
+gradio
+langgraph.checkpoint.sqlite
+unstructured
+langchain-community
+langgraph
+langchain-anthropic
+tavily-python
+jq
