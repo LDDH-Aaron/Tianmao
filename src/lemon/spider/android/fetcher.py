@@ -5,7 +5,7 @@ import random
 
 import uiautomator2 as u2
 
-from parse_uixml import parse
+from parse_uixml import parse_ratingpage
 
 
 def run_command(*args):
@@ -27,8 +27,17 @@ def update_no_override(dst: dict, src: dict):
 
 
 def main():
-    device = u2.connect()
+    while True:
+        try:
+            print("连接设备...")
+            device = u2.connect()
+        except u2.ConnectError as e:
+            print("连接设备失败：", e)
+            input("按Enter重试")
+        else:
+            break
     result: dict[str, str] = {}
+    input("就绪。请手动将页面导航至评价列表，然后按下Enter")
     try:
         # tmpfile = "./ui.xml"
         cycle = 0
@@ -38,7 +47,7 @@ def main():
             size = len(result)
             # with open(tmpfile, "rb") as fp:
             #     data = parse(fp.read(), stored=result)
-            data = parse(device.dump_hierarchy().encode("utf-8"), stored=result)
+            data = parse_ratingpage(device.dump_hierarchy().encode("utf-8"), stored=result)
             print(*data.items(), sep="\n")
             update_no_override(result, data)
             cycle += 1

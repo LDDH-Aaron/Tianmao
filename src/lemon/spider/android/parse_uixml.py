@@ -6,8 +6,11 @@ from lxml import etree
 
 
 _regex_date = re.compile(r"(\d{4}年)?\d{1,2}月\d{1,2}日")
-_regex_detailed_rating = re.compile(r'昵称([^"]+?)评论([^"]+?)')
+_regex_detailed_rating = re.compile(r"昵称(.+?)评论(.+?)")
 _regex_desc_templ = re.compile(r"(^|\s+)[\u4e00-\u9fa5]{4}：")
+_regex_title = re.compile(
+    r"https?://img\.alicdn\.com/.+?\.(?=png|jpe?g|gif|webp|avif)(.+)"
+)
 
 
 def rm_desc_templ(rate_content: str):
@@ -16,13 +19,21 @@ def rm_desc_templ(rate_content: str):
     ).strip()
 
 
-def parse(xmltext: str, stored: dict[str, str] | None) -> dict[str, str]:
+def parse_infopage(xmlb: bytes):
+    xml = etree.XML(xmlb, etree.XMLParser())
+    data = {}
+    for elem in xml.findall(".//node"):
+        if match := _regex_title.match(elem.attrib.get("text", "")):
+            data["title"] = match.group(1)
+    return data
+
+def parse_ratingpage(xmlb: bytes, stored: dict[str, str] | None) -> dict[str, str]:
     """
     返回的字典，键为评价内容，值为日期
-    
+
     stored 参数是已经记录的内容，用于去重
     """
-    xml = etree.XML(xmltext, etree.XMLParser())
+    xml = etree.XML(xmlb, etree.XMLParser())
     nodes: list[str] = [
         e.attrib.get("content-desc", "") for e in xml.findall(".//node")
     ]
