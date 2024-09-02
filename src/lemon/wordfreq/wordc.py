@@ -1,5 +1,4 @@
 from wordcloud import WordCloud
-import matplotlib.pyplot as plt
 from collections import Counter
 
 
@@ -10,9 +9,6 @@ def generate_wordcloud(word_freq: Counter, output_path: str | None = None):
         height=900,
         background_color="white",
     ).generate_from_frequencies(word_freq)
-    plt.figure(figsize=(16, 9))
-    plt.imshow(wordcloud, interpolation="bilinear")
-    plt.axis("off")
     if output_path:
         wordcloud.to_file(output_path)
-    plt.show()
+    return wordcloud
