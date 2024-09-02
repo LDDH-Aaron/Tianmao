@@ -37,6 +37,7 @@ def main():
         else:
             break
     result: dict[str, str] = {}
+    print("Device:", device.info)
     input("就绪。请手动将页面导航至评价列表，然后按下Enter")
     try:
         cycle = 0
@@ -78,5 +79,5 @@ def main():
     print("saved!")
 
 
-# if __name__ == "__main__":
-#     main()
+if __name__ == "__main__":
+    main()

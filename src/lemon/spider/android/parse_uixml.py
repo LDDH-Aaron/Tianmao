@@ -114,6 +114,8 @@ def parse_ratingpage(xmlb: bytes, stored: dict[str, str] | None) -> dict[str, st
         #     if content and content not in result and content not in stored:
         #         content_to_match.put(content)
         #     continue
+        
+        # not stable, 会误匹配日期和评论
 
     content = ""
     while not date_to_match.empty() and not content_to_match.empty():
