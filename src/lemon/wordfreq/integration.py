@@ -1,5 +1,6 @@
 from collections import Counter
 import json
+from typing import Iterable
 
 import matplotlib.pyplot as plt
 
@@ -14,7 +15,7 @@ DEFAULT_STOPWORDS_FILES = (
 )
 
 
-def cut_and_generate(text: str, sw_files=None):
+def cut_and_generate(text: str, sw_files: Iterable[str] | None = None):
     sw = (
         load_stopwords(DEFAULT_STOPWORDS_FILES)
         if sw_files is None

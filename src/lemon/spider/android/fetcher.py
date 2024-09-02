@@ -39,33 +39,22 @@ def main():
     result: dict[str, str] = {}
     input("就绪。请手动将页面导航至评价列表，然后按下Enter")
     try:
-        # tmpfile = "./ui.xml"
         cycle = 0
         no_increase_count = 0
         while True:
-            # dump(tmpfile)
             size = len(result)
-            # with open(tmpfile, "rb") as fp:
-            #     data = parse(fp.read(), stored=result)
-            data = parse_ratingpage(device.dump_hierarchy().encode("utf-8"), stored=result)
+            data = parse_ratingpage(
+                device.dump_hierarchy().encode("utf-8"), stored=result
+            )
             print(*data.items(), sep="\n")
             update_no_override(result, data)
             cycle += 1
-            # run_command(
-            #     "adb",
-            #     "shell",
-            #     "input",
-            #     "swipe",
-            #     str(random.randint(480, 600)),
-            #     str(1500 + random.randint(-10, 10)),
-            #     str(random.randint(480, 600)),
-            #     str(1000 + random.randint(-10, 10)),
-            # )
             device.swipe(
                 random.randint(480, 600),
-                1500 + random.randint(-10, 10),
+                1800 + random.randint(-10, 10),
                 random.randint(480, 600),
                 1000 + random.randint(-10, 10),
+                duration=0.2
             )
 
             print("Cycle:", cycle, " Add:", len(result) - size, " Total:", len(result))
@@ -76,7 +65,6 @@ def main():
                 no_increase_count = 0
             if no_increase_count > 10:
                 break
-            # time.sleep(0.5)
     except KeyboardInterrupt:
         pass
     print(len(result), "ratings in total, saving...")
