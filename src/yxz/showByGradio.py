@@ -159,4 +159,29 @@ with gr.Blocks(css=custom_css) as demo:
         inputs=input_text,
         outputs=[plot1, plot2, plot3]
     )
-demo.launch()
+    # 美化后的底部按钮和跳转的JS
+    with gr.Row():
+        gr.HTML(
+            """
+            <button style="
+                background-color: #4CAF50; /* 绿色背景 */
+                border: none;              /* 无边框 */
+                color: white;              /* 白色字体 */
+                padding: 15px 32px;        /* 内边距 */
+                text-align: center;        /* 文字居中 */
+                text-decoration: none;     /* 去掉下划线 */
+                display: inline-block;     /* 行内块元素 */
+                font-size: 16px;           /* 字体大小 */
+                margin: 4px 2px;           /* 外边距 */
+                cursor: pointer;           /* 鼠标指针样式 */
+                border-radius: 12px;       /* 圆角边框 */
+                transition-duration: 0.4s; /* 过渡效果 */
+            " 
+            onmouseover="this.style.backgroundColor='#45a049';"
+            onmouseout="this.style.backgroundColor='#4CAF50';"
+            onclick="window.location.href='http://127.0.0.1:7860';">
+                生成AI报告
+            </button>
+            """
+        )
+demo.launch(server_port = 8080)
